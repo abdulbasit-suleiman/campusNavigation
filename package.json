@@ -1,0 +1,31 @@
+{
+  "name": "sunattendance",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@faceio/fiojs": "^1.1.0",
+    "@fingerprintjs/fingerprintjs": "^4.2.2",
+    "@fingerprintjs/fingerprintjs-pro-react": "^2.6.2",
+    "face-api.js": "^0.22.2",
+    "fingerprintjs2": "^2.1.4",
+    "firebase": "^7.24.0",
+    "leaflet": "^1.9.4",
+    "next": "14.0.4",
+    "opencv.js": "^1.2.1",
+    "qrcode.react": "^3.1.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-geocode": "^1.0.0-alpha.1",
+    "react-leaflet": "^4.2.1",
+    "react-router-dom": "^6.22.3",
+    "react-webcam": "^7.2.0",
+    "string_decoder": "^1.3.0",
+    "xlsx": "^0.18.5"
+  }
+}
