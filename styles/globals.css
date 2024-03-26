@@ -281,3 +281,18 @@ hr{
 }
 
 }
+.splashGO{
+  color: white;
+  background-color: green;
+  padding: 10px 3rem;
+  outline: none;
+  border: none;
+  margin-top: 1rem;
+  border-radius: 2px;
+}
+.splashLink{
+  color: white;
+
+  text-decoration: none;
+  text-transform: none;
+}

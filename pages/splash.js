@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 const Logo="/asset/logo.svg"
 
 
@@ -10,6 +11,8 @@ function Splash() {
           height={100} 
           className="splashLogo"/>
       <h4 className="splashText">SUN NAVIGATION APP</h4>
+   <button className="splashGO"><Link className="splashLink" href="./homePage">Go</Link></button>
+
     </div>
   );
 }
