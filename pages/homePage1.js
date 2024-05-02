@@ -1,9 +1,42 @@
-import React from 'react'
-import Image from 'next/image'
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { useRouter,router } from 'next/router';
+
+const directionImg = './assets/moremi.svg';
+const senateChambersImg = './assets/moremi.svg';
+const mosqueImg = './assets/moremi.svg';
+const riuImg = './assets/moremi.svg';
+const moremiHostelImg = './assets/moremi.svg';
+const lateefahOkunuHostelImg = './assets/moremi.svg';
+const jungleHostelImg = './assets/moremi.svg';
+const schoolCafeteriaImg = './assets/moremi.svg'; 
+const dummyImg = './asset/moremi.svg';
 
 function HomePage() {
-  const dummyImg = './asset/dummyImg.svg'
+  const [searchQuery, setSearchQuery] = useState('');
+  
+  const [locations, setLocations] = useState([
+    { name: 'Direction', description: 'Navigate yourself around the school', image: directionImg },
+    { name: 'Senate-Chambers', description: 'Official meetings and events', image: senateChambersImg },
+    { name: 'Mosque', description: 'Place for religious worship', image: mosqueImg },
+    { name: 'RIU', description: 'Research Institute Unit', image: riuImg },
+    { name: 'Moremi-Hostel', description: 'Accommodation for students', image: moremiHostelImg },
+    { name: 'Lateefah-Okunu-Hostel', description: 'Accommodation for students', image: lateefahOkunuHostelImg },
+    { name: 'Jungle-Hostel', description: 'Accommodation for male students', image: jungleHostelImg },
+    { name: 'School-Cafeteria', description: 'Dining area for students', image: schoolCafeteriaImg },
+  ]);
 
+  // Filter locations based on the search query
+  const suggestedLocations = locations.filter((location) =>
+  location.name.toLowerCase().includes(searchQuery.toLowerCase())
+);
+
+const navigateToLocation = (locationName) => {
+    router.push(`/location/${encodeURIComponent(locationName)}`);
+  }
+
+// Only show suggestions if the search query has content
+const shouldShowSuggestions = searchQuery.trim() !== '';
   return (
     <div className='mapSearch'>
       <div className='map'>
@@ -40,7 +73,33 @@ function HomePage() {
 </svg>
 </span>
 <hr />
-        <span><input type='text' placeholder='Senate Chambers'/></span>
+<span
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                width: '100%',
+                padding: '0 1rem',
+              }}
+            >
+              <input
+                type="text"
+                placeholder="Search for a location"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </span>
+
+            {shouldShowSuggestions && (
+            <div className="suggestions">
+              {suggestedLocations.map((suggestion, index) => (
+                <div key={index} className="suggestion" onClick={() => setSearchQuery(suggestion.name)}>
+                  {suggestion.name}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
         </div>
         <div className='HomepageMeansoftrans'>
@@ -58,7 +117,7 @@ Walk</button>
 Cycle</button>
         </div>
         <div className='homepagePlacesBtn'>
-          <button>Take Me There</button>
+        <button onClick={() => navigateToLocation(searchQuery)}>Take Me There</button>
           <button>See Other Places</button>
         </div>
       </div>
