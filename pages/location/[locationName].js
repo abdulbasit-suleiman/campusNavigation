@@ -1,26 +1,44 @@
 import React from 'react';
 import Image from 'next/image';
 
-const locationImages = {
-  'Jungle-Hostel': './assets/moremi.svg',
-  'Senate-Chambers': './assets/moremi.svg',
-  'Mosque': './assets/moremi.svg',
-  'RIU': './assets/moremi.svg',
-  'Moremi-Hostel': './assets/moremi.svg',
-  'Lateefah-Okunu-Hostel': './assets/moremi.svg',
-  'School-Cafeteria': './assets/moremi.svg',
-};
-
 function LocationDetails({ location }) {
   if (!location) {
     return <p>Location not found</p>;
   }
 
+  let imagePath = '/asset/logo.svg'; // Default image in case the desired one isn't found
+
+  if (location.name === 'Jungle-Hostel') {
+    imagePath = '/asset/moremi.svg';
+  } else if (location.name === 'Senate-Chambers') {
+    imagePath = '/asset/moremi.svg';
+  } else if (location.name === 'Mosque') {
+    imagePath = '/asset/moremi.svg';
+  } else if (location.name === 'RIU') {
+    imagePath = '/asset/moremi.svg';
+  } else if (location.name === 'Moremi-Hostel') {
+    imagePath = '/asset/moremi.svg';
+  } else if (location.name === 'Lateefah-Okunu-Hostel') {
+    imagePath = '/asset/dummyImg.svg';
+  } else if (location.name === 'School-Cafeteria') {
+    imagePath = '/asset/moremi.svg';
+  }else if (location.name === 'Mass-Communication-Studio') {
+    imagePath = '/asset/masscom.jpg';
+  }else if (location.name === 'MBashir') {
+    imagePath = '/asset/MBashir.jpg';
+  }
+
   return (
     <div>
       <h1>{location.name}</h1>
-      <div className='map'>
-        <Image src={location.image} alt={location.name}  objectFit='cover' objectPosition='center' layout='fill' />
+      <div style={{ position: 'relative', width: '100%', height: '400px' }}>
+        <Image
+          src={imagePath}
+          alt={location.name}
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center"
+        />
       </div>
       <p>{location.description}</p>
     </div>
@@ -28,7 +46,17 @@ function LocationDetails({ location }) {
 }
 
 export const getStaticPaths = async () => {
-  const locations = Object.keys(locationImages);
+  const locations = [
+    'Jungle-Hostel',
+    'Senate-Chambers',
+    'Mosque',
+    'Mass-Communication-Studio',
+    'RIU',
+    'MBashir',
+    'Moremi-Hostel',
+    'Lateefah-Okunu-Hostel',
+    'School-Cafeteria',
+  ];
 
   const paths = locations.map((name) => ({
     params: { locationName: encodeURIComponent(name) },
@@ -41,23 +69,23 @@ export const getStaticProps = async ({ params }) => {
   const locationName = decodeURIComponent(params.locationName);
 
   const locations = [
-     {name: 'Jungle-Hostel', description: 'Accommodation for students' ,image:'Mosque' },
+    { name: 'Jungle-Hostel', description: 'Accommodation for students' },
     { name: 'Moremi-Hostel', description: 'Accommodation for students' },
+    { name: 'Mass-Communication-Studio', description: 'Mass communication studio'},
+    { name: 'MBashir', description: 'College of management and applied science'},
     { name: 'Mosque', description: 'Place for religious worship' },
     { name: 'RIU', description: 'Research Institute Unit' },
-    { name: 'Moremi-Hostel', description: 'Accommodation for students' },
     { name: 'Lateefah-Okunu-Hostel', description: 'Accommodation for students' },
     { name: 'School-Cafeteria', description: 'Dining area for students' },
   ];
 
-  const location = locations.find((loc) => loc.name.toLowerCase() === locationName.toLowerCase());
+  const location = locations.find(
+    (loc) => loc.name.toLowerCase() === locationName.toLowerCase()
+  );
 
   if (!location) {
     return { notFound: true };
   }
-
-  // Attach the correct image based on the location name
-  location.image = locationImages[location.name];
 
   return { props: { location } };
 };

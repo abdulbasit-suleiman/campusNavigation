@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { useRouter,router } from 'next/router';
 
-const directionImg = './assets/moremi.svg';
-const senateChambersImg = './assets/moremi.svg';
-const mosqueImg = './assets/moremi.svg';
-const riuImg = './assets/moremi.svg';
-const moremiHostelImg = './assets/moremi.svg';
-const lateefahOkunuHostelImg = './assets/moremi.svg';
-const jungleHostelImg = './assets/moremi.svg';
-const schoolCafeteriaImg = './assets/moremi.svg'; 
+const directionImg = './asset/moremi.svg';
+const senateChambersImg = './asset/moremi.svg';
+const mosqueImg = './asset/moremi.svg';
+const riuImg = './asset/moremi.svg';
+const moremiHostelImg = './asset/moremi.svg';
+const lateefahOkunuHostelImg = './asset/moremi.svg';
+const jungleHostelImg = './asset/moremi.svg';
+const schoolCafeteriaImg = './asset/moremi.svg'; 
+const MBashir = '/asset/MBashir.jpg'; 
+const masCommunicationStudio = './asset/masscom.jpg'; 
 const dummyImg = './asset/moremi.svg';
 
 function HomePage() {
@@ -20,6 +22,8 @@ function HomePage() {
     { name: 'Senate-Chambers', description: 'Official meetings and events', image: senateChambersImg },
     { name: 'Mosque', description: 'Place for religious worship', image: mosqueImg },
     { name: 'RIU', description: 'Research Institute Unit', image: riuImg },
+    { name: 'Mass-Communication-Studio', description: 'Mass communication studio', image: masCommunicationStudio },
+    { name: 'MBashir', description: 'College of management and applied science', image: MBashir },
     { name: 'Moremi-Hostel', description: 'Accommodation for students', image: moremiHostelImg },
     { name: 'Lateefah-Okunu-Hostel', description: 'Accommodation for students', image: lateefahOkunuHostelImg },
     { name: 'Jungle-Hostel', description: 'Accommodation for male students', image: jungleHostelImg },
